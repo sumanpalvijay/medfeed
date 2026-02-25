@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
@@ -14,7 +15,7 @@ export default function HomePage() {
         <ul className="ml-auto hidden md:flex gap-8 text-gray-600">
           <li className="hover:text-blue-700 cursor-pointer">About</li>
           <li className="hover:text-blue-700 cursor-pointer">Science</li>
-          <li className="hover:text-blue-700 cursor-pointer">Feedback</li>
+          <li className="hover:text-blue-700 cursor-pointer"><Link href="/feedback">Feedback</Link></li>
         </ul>
       </nav>
 
@@ -37,13 +38,13 @@ export default function HomePage() {
               Your Crafted Care in Reflux
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-6 flex flex-wrap gap-4">
               <a
                 href="/feedback"
-                className="bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-900"
-              >
+                className="w-48 text-center bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-900">
                 Doctor Feedback
               </a>
+
 
               <button className="border border-green-500 text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-green-50">
                 Scientific Info
@@ -52,10 +53,20 @@ export default function HomePage() {
           </div>
 
           {/* RIGHT */}
-          <div className="flex justify-center">
-            <div className="w-64 h-64 bg-gradient-to-br from-green-200 to-green-400 rounded-full opacity-80" />
+          <div className="relative flex justify-center md:justify-end items-center">
+            <div className="absolute w-72 h-72 bg-green-200 rounded-full blur-3xl opacity-60" />
+
+            <Image
+              src="/simcraft-bottle.png"
+              alt="SIMCRAFT Oral Suspension"
+              width={280}
+              height={420}
+              className="relative z-10 object-contain drop-shadow-2xl"
+              priority
+            />
           </div>
-        </div>
+
+        </div> {/* ✅ THIS WAS MISSING */}
 
         {/* WAVES */}
         <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-green-200 to-transparent" />
@@ -67,21 +78,19 @@ export default function HomePage() {
           Challenges in Reflux Management
         </h3>
 
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {[
-            "Persistent Acid Reflux",
-            "Night-time Heartburn",
-            "Poor Taste Acceptance",
-            "Low Patient Compliance",
-          ].map((item) => (
-            <div
-              key={item}
-              className="bg-white p-6 rounded-xl shadow text-center"
-            >
-              <div className="w-12 h-12 mx-auto mb-4 bg-green-100 rounded-full" />
-              <p className="font-semibold">{item}</p>
-            </div>
-          ))}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="bg-white p-6 rounded-xl shadow text-center">
+            <p>Persistent Acid Reflux</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow text-center">
+            <p>Night-time Heartburn</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow text-center">
+            <p>Poor Taste Acceptance</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow text-center">
+            <p>Low Patient Compliance</p>
+          </div>
         </div>
       </section>
 
@@ -102,7 +111,15 @@ export default function HomePage() {
         </div>
 
         <div className="flex justify-center">
-          <div className="w-72 h-44 bg-gradient-to-r from-green-300 via-green-200 to-green-100 rounded-full opacity-90" />
+          <div className="w-72 h-44 bg-gradient-to-r " />
+          <Image
+            src="/ILS-Logo.png"
+            alt="SIMCRAFT Oral Suspension"
+            width={280}
+            height={420}
+            className="relative z-10 object-contain drop-shadow-2xl"
+            priority
+          />
         </div>
       </section>
 
@@ -140,13 +157,16 @@ export default function HomePage() {
           enhance reflux care.
         </p>
 
-        <a
-          href="/feedback"
-          className="inline-block mt-6 bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600"
-        >
-          Submit Doctor Feedback
-        </a>
+        <div className="mt-8">
+          <a
+            href="/feedback"
+            className="inline-block bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-900"
+          >
+            Doctor Feedback
+          </a>
+        </div>
       </section>
+
     </main>
   );
 }

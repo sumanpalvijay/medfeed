@@ -1,12 +1,42 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function FeedbackPage() {
+    const [name, setName] = useState('');
+    const [state, setState] = useState('');
+    const [hq, setHq] = useState('');
+    const [doctorName, setDoctorName] = useState('');
+    const [speciality, setSpeciality] = useState('');
+    const [rating, setRating] = useState('');
+
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+
+        const data = {
+            name,
+            state,
+            hq,
+            speciality,
+            rating,
+        };
+
+        await fetch("/api/feedback", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        });
+
+        alert("Feedback submitted successfully");
+    }
     return (
         <main className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
             <div className="bg-white w-full max-w-2xl rounded-xl shadow-lg p-8">
 
                 {/* Title */}
                 <h1 className="text-3xl font-bold text-center">
-                    <span className="text-green-500">SIM</span>
-                    <span className="text-blue-900">CRAFT</span>
+                    <span className="text-green-500">SIMC</span>
+                    <span className="text-blue-900">RAFT</span>
                 </h1>
 
                 <p className="text-center text-gray-600 mt-2 font-medium">
@@ -27,6 +57,8 @@ export default function FeedbackPage() {
                     <input
                         type="text"
                         placeholder="Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         className="w-full border p-3 rounded-md"
                     />
 
@@ -34,6 +66,8 @@ export default function FeedbackPage() {
                     <input
                         type="text"
                         placeholder="State"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
                         className="w-full border p-3 rounded-md"
                     />
 
@@ -41,6 +75,8 @@ export default function FeedbackPage() {
                     <input
                         type="text"
                         placeholder="HQ (Headquarters)"
+                        value={hq}
+                        onChange={(e) => setHq(e.target.value)}
                         className="w-full border p-3 rounded-md"
                     />
 
@@ -48,6 +84,8 @@ export default function FeedbackPage() {
                     <input
                         type="text"
                         placeholder="Doctor Name"
+                        value={doctorName}
+                        onChange={(e) => setDoctorName(e.target.value)}
                         className="w-full border p-3 rounded-md"
                     />
 
@@ -55,6 +93,8 @@ export default function FeedbackPage() {
                     <input
                         type="text"
                         placeholder="Speciality"
+                        value={speciality}
+                        onChange={(e) => setSpeciality(e.target.value)}
                         className="w-full border p-3 rounded-md"
                     />
 
@@ -90,6 +130,7 @@ export default function FeedbackPage() {
                     {/* Submit */}
                     <button
                         type="submit"
+                        onClick={handleSubmit}
                         className="w-full mt-6 bg-blue-800 text-white py-3 rounded-lg font-semibold hover:bg-blue-900"
                     >
                         Submit Feedback

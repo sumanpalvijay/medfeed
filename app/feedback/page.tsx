@@ -17,6 +17,7 @@ export default function FeedbackPage() {
             name,
             state,
             hq,
+            doctorName,
             speciality,
             rating,
         };
@@ -51,7 +52,7 @@ export default function FeedbackPage() {
                 </div>
 
                 {/* FORM */}
-                <form className="mt-6 space-y-4">
+                <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
 
                     {/* Name */}
                     <input
@@ -119,6 +120,9 @@ export default function FeedbackPage() {
                                     <input
                                         type="radio"
                                         name="taste_rating"
+                                        value={option}
+                                        checked={rating === option}
+                                        onChange={(e) => setRating(e.target.value)}
                                         className="accent-green-600"
                                     />
                                     <span>{option}</span>
@@ -130,7 +134,7 @@ export default function FeedbackPage() {
                     {/* Submit */}
                     <button
                         type="submit"
-                        onClick={handleSubmit}
+
                         className="w-full mt-6 bg-blue-800 text-white py-3 rounded-lg font-semibold hover:bg-blue-900"
                     >
                         Submit Feedback

@@ -48,7 +48,7 @@ export default function HomePage() {
             <div className="absolute w-72 h-72 bg-green-200 rounded-full blur-3xl opacity-60" />
 
             <Image
-              src="/simcraft-bottle.png"
+              src="/bottle.png"
               alt="SIMCRAFT Oral Suspension"
               width={280}
               height={420}
